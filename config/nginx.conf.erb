@@ -33,21 +33,21 @@ http {
 		server unix:/tmp/nginx.socket fail_timeout=0;
  	}
 
-  # server {
-  #   listen <%= ENV["PORT"] %>;
-  #   server_name support.factioncommander.com;
-  #   keepalive_timeout 5;
-  #
-  #   location / {
-  #     proxy_set_header Host $http_host;
-  #     proxy_pass https://custom.intercom.help;
-  #   }
-  # }
+  server {
+    listen <%= ENV["PORT"] %>;
+    server_name support.factioncommander.com;
+    keepalive_timeout 5;
+
+    location / {
+      proxy_set_header Host $host;
+      proxy_pass $scheme://custom.intercom.help;
+    }
+  }
 
   server {
     listen <%= ENV["PORT"] %>;
     server_name www.factioncommander.com;
-    return 302 https://witharsenal.com$request_uri;
+    return 302 $scheme://witharsenal.com$request_uri;
   }
 
 	server {
