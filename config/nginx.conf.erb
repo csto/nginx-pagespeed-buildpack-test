@@ -12,7 +12,7 @@ http {
   gzip on;
   gzip_comp_level 6;
   gzip_min_length 512;
-  gzip_types text/plain text/html text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml;
+  gzip_types text/plain text/html text/css application/json application/javascript application/xml application/xml+rss text/javascript image/svg+xml;
   gzip_vary on;
   gzip_proxied any;
 
@@ -33,16 +33,16 @@ http {
 		server unix:/tmp/nginx.socket fail_timeout=0;
  	}
 
-  server {
-    listen <%= ENV["PORT"] %>;
-    server_name support.factioncommander.com;
-    keepalive_timeout 5;
-
-    location / {
-      proxy_set_header Host $http_host;
-      proxy_pass https://custom.intercom.help;
-    }
-  }
+  # server {
+  #   listen <%= ENV["PORT"] %>;
+  #   server_name support.factioncommander.com;
+  #   keepalive_timeout 5;
+  #
+  #   location / {
+  #     proxy_set_header Host $http_host;
+  #     proxy_pass https://custom.intercom.help;
+  #   }
+  # }
 
   server {
     listen <%= ENV["PORT"] %>;
