@@ -39,7 +39,7 @@ http {
     keepalive_timeout 5;
 
     location / {
-      proxy_set_header Host $host;
+      proxy_set_header Host $http_host;
       proxy_pass https://custom.intercom.help;
     }
   }
